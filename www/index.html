@@ -31,7 +31,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		$(function() {
 			$('nav#menu').mmenu();
 		});
-		
+	  var db = new PouchDB('testak');	
 	
 
 
@@ -40,8 +40,8 @@ $.ajax({
  url: 'https://www.google.co.in/',
  success: function(data) {
    alert('Connected');
-   sync();
-    alert("Offline Data Synced")
+   //sync();
+   //alert("Offline Data Synced")
  },
  error: function(data) {
    alert('No Internet Connection.');
@@ -49,11 +49,14 @@ $.ajax({
 	  });
 	  }
 
+  
 
+  
+  
 
 	  function savelocal()
 {	
-		var db = new PouchDB('testak');
+		//var db = new PouchDB('testak');
 var a;
 var nam = document.getElementById("name").value;
 var id = document.getElementById("nid").value;
@@ -84,11 +87,12 @@ function sync()
 {
 
 db.replicate.to('http://115.119.117.86:5984/testak');
+alert("datasynced")
 
 }
 	</script>
 </head>
-<body onload="saveclick()"><nav id="menu" class="mm-menu mm-is-menu mm-horizontal"><div class="mm-inner"><ul class="mm-opened">
+<body><nav id="menu" class="mm-menu mm-is-menu mm-horizontal"><div class="mm-inner"><ul class="mm-opened">
 								<li><a href="index.html"><i><img src="images/user.png"></i>Profile</a></li>
 								<li><a href="#"><span><i><img src="images/mail.png"></i>Inbox</span><label class="digits active">5</label><div class="clear"></div></a></li>
 						  		<li><a href="#"><span> <i><img src="images/invites.png"></i>Create Lead</span><label class="digits">3</label><div class="clear"></div></a></li>
@@ -162,6 +166,7 @@ db.replicate.to('http://115.119.117.86:5984/testak');
 						  		    <li><a href="#"><input type="text" placeholder="name" id="name">
 									<a href="#"><span class="day_name"><input type="text" placeholder="id" id="nid"></span>
 									<a href="#"><span class="day_name"><input type="button" value="save" onclick="savelocal()" ></span>
+									<a href="#"><span class="day_name"><input type="button" value="Sync" onclick="sync()" ></span>
 									
 				    		</li>
 							</ul>
