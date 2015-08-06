@@ -32,8 +32,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			$('nav#menu').mmenu();
 		});
 		
-		
-	function save()
+	
+
+
+function saveclick(){
+$.ajax({
+ url: 'https://www.google.co.in/',
+ success: function(data) {
+   alert('Connected');
+   sync1();
+    alert("Offline Data Synced")
+ },
+ error: function(data) {
+   alert('No Internet Connection.');
+	   }
+	  });
+	  }
+
+
+
+	  function savelocal()
 {	
 		var db = new PouchDB('testak');
 var a;
@@ -60,11 +78,17 @@ else {
     document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
 }
 
+//db.replicate.to('http://115.119.117.86:5984/testak');
+}
+function sync()
+{
+
 db.replicate.to('http://115.119.117.86:5984/testak');
+
 }
 	</script>
 </head>
-<body><nav id="menu" class="mm-menu mm-is-menu mm-horizontal"><div class="mm-inner"><ul class="mm-opened">
+<body onload="saveclick()"><nav id="menu" class="mm-menu mm-is-menu mm-horizontal"><div class="mm-inner"><ul class="mm-opened">
 								<li><a href="index.html"><i><img src="images/user.png"></i>Profile</a></li>
 								<li><a href="#"><span><i><img src="images/mail.png"></i>Inbox</span><label class="digits active">5</label><div class="clear"></div></a></li>
 						  		<li><a href="#"><span> <i><img src="images/invites.png"></i>Create Lead</span><label class="digits">3</label><div class="clear"></div></a></li>
@@ -137,7 +161,7 @@ db.replicate.to('http://115.119.117.86:5984/testak');
 				      			<ul>
 						  		    <li><a href="#"><input type="text" placeholder="name" id="name">
 									<a href="#"><span class="day_name"><input type="text" placeholder="id" id="nid"></span>
-									<a href="#"><span class="day_name"><input type="button" value="save" onclick="save()" ></span>
+									<a href="#"><span class="day_name"><input type="button" value="save" onclick="savelocal()" ></span>
 									
 				    		</li>
 							</ul>
